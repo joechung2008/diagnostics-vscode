@@ -1,0 +1,60 @@
+{
+  "activationEvents": [],
+  "categories": [
+    "Azure"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "diagnostics-vscode.showAzureExtensions",
+        "title": "Diagnostics: Show Azure Extensions"
+      }
+    ]
+  },
+  "description": "Information about extensions on the Azure portal",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.104.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.25.9",
+    "eslint": "^9.34.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.1"
+  },
+  "displayName": "diagnostics-vscode",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "main": "./dist/extension.js",
+  "name": "diagnostics-vscode",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css",
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf dist",
+    "compile": "npm run clean && npm run check-types && npm run lint && node esbuild.js",
+    "compile-tests": "tsc -p . --outDir out",
+    "format": "prettier --write .",
+    "lint": "eslint src",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "test": "vscode-test",
+    "vscode:prepublish": "npm run package",
+    "watch": "npm-run-all -p watch:*",
+    "watch-tests": "esbuild --watch",
+    "watch:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css --watch",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json"
+  },
+  "type": "module",
+  "version": "0.0.1"
+}
