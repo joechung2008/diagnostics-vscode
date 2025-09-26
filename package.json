@@ -35,8 +35,13 @@
   "engines": {
     "vscode": "^1.104.0"
   },
+  "license": "MIT",
   "main": "./dist/extension.js",
   "name": "diagnostics-vscode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joechung2008/diagnostics-vscode.git"
+  },
   "scripts": {
     "build:css": "npx @tailwindcss/cli -i ./src/styles/tailwind.css -o ./dist/tailwind.css",
     "check-types": "tsc --noEmit",
@@ -45,7 +50,7 @@
     "compile-tests": "tsc -p . --outDir out",
     "format": "prettier --write .",
     "lint": "eslint src",
-    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "package": "npm run clean && node esbuild.js --production",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "test": "vscode-test",
     "vscode:prepublish": "npm run package",
