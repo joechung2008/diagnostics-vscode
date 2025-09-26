@@ -1,10 +1,10 @@
 import * as vscode from "vscode";
-import { outputChannel } from "../extension.js";
-import { displayExtension } from "../lib/displayExtension.js";
-import { AzureEnvironment } from "../lib/environment.js";
-import { fetchExtensions } from "../lib/fetchExtensions.js";
-import { pickEnvironment } from "../lib/pickEnvironment.js";
-import { pickExtension } from "../lib/pickExtension.js";
+import { outputChannel } from "../../extension.js";
+import { displayExtension } from "../webview/extensionDisplay.js";
+import { AzureEnvironment } from "../../core/diagnostics/environment.js";
+import { fetchExtensions } from "../ui/extensionsFetcher.js";
+import { pickEnvironment } from "../ui/environmentPicker.js";
+import { pickExtension } from "../ui/extensionPicker.js";
 
 export async function showAzureExtensions(context: vscode.ExtensionContext) {
   outputChannel.appendLine("Starting showAzureExtensions...");

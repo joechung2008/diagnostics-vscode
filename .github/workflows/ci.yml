@@ -33,10 +33,23 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Unit Tests
+        run: npm run test:unit
+
+      - name: Unit Tests with Coverage
+        run: npm run test:unit:coverage
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          if-no-files-found: warn
+
       - name: Compile
         run: npm run compile
 
-      - name: Test
+      - name: Integration Tests
         run: xvfb-run -a npm run test
 
       - name: Package

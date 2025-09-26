@@ -30,4 +30,10 @@ export default [
       semi: "warn",
     },
   },
+  {
+    files: ["src/test/**/*.cts"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ];

@@ -3,7 +3,7 @@ import type {
   ExtensionError,
   ExtensionInfo,
   ExtensionsProps,
-} from "../diagnostics.js";
+} from "../../diagnostics.js";
 
 export function isExtensionError(
   value: Extension | undefined
@@ -30,4 +30,19 @@ export function sortExtensionsByName(
 
     return 0;
   });
+}
+
+export function isExtensionsEmpty(
+  extensions: ExtensionsProps["extensions"]
+): boolean {
+  return Object.keys(extensions).length === 0;
+}
+
+export function prepareExtensionChoices(
+  extensions: ExtensionsProps["extensions"]
+): string[] {
+  if (isExtensionsEmpty(extensions)) {
+    return [];
+  }
+  return sortExtensionsByName(extensions);
 }

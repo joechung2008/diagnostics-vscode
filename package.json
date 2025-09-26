@@ -18,6 +18,8 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "@types/vscode": "^1.104.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
     "autoprefixer": "^10.4.21",
@@ -29,7 +31,8 @@
     "rimraf": "^6.0.1",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.44.1"
+    "typescript-eslint": "^8.44.1",
+    "vitest": "^3.2.4"
   },
   "displayName": "diagnostics-vscode",
   "engines": {
@@ -38,6 +41,7 @@
   "license": "MIT",
   "main": "./dist/extension.js",
   "name": "diagnostics-vscode",
+  "publisher": "joechung2008",
   "repository": {
     "type": "git",
     "url": "https://github.com/joechung2008/diagnostics-vscode.git"
@@ -47,12 +51,16 @@
     "check-types": "tsc --noEmit",
     "clean": "rimraf dist",
     "compile": "npm run clean && npm run check-types && npm run lint && node esbuild.js",
-    "compile-tests": "tsc -p . --outDir out",
+    "compile-tests": "node esbuild.test.js",
     "format": "prettier --write .",
     "lint": "eslint src",
     "package": "npm run clean && node esbuild.js --production",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "test": "vscode-test",
+    "test:unit": "vitest run",
+    "test:unit:coverage": "vitest run --coverage",
+    "test:unit:ui": "vitest --ui",
+    "test:unit:watch": "vitest --watch",
     "vscode:prepublish": "npm run package",
     "watch": "npm-run-all -p watch:*",
     "watch-tests": "esbuild --watch",

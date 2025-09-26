@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { showAzureExtensions } from "./commands/showAzureExtensions.js";
+import { showAzureExtensions } from "./adapters/commands/showAzureExtensions.js";
 
 const extensionCommands = [
   {
